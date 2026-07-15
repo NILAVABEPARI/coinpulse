@@ -21,7 +21,8 @@ export async function fetcher<T>(
         { skipEmptyString: true, skipNull: true },
     );
 
-    console.log('api key -- ', API_KEY);
+    console.log('url before fetching -- ', url);
+
     const response = await fetch(url, {
         headers: {
             'x-cg-pro-api-key': API_KEY,
@@ -32,7 +33,7 @@ export async function fetcher<T>(
 
     if (!response.ok) {
         const errorBody: CoinGeckoErrorBody = await response.json().catch(() => ({}));
-
+        console.log('response --', response);
         throw new Error(`API Error: ${response.status}: ${errorBody.error || response.statusText} `);
     }
 

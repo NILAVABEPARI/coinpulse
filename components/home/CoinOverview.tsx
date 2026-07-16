@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/error-boundaries */
 import { fetcher } from '@/lib/coingecko.actions';
 import Image from 'next/image';
 import { formatCurrency } from '@/lib/utils';

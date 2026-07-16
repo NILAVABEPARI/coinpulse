@@ -15,7 +15,7 @@ export async function fetcher<T>(
 ): Promise<T> {
     const url = qs.stringifyUrl(
         {
-            url: `${BASE_URL}/${endpoint}`,
+            url: `${BASE_URL}${endpoint}`,
             query: params,
         },
         { skipEmptyString: true, skipNull: true },
@@ -33,7 +33,7 @@ export async function fetcher<T>(
 
     if (!response.ok) {
         const errorBody: CoinGeckoErrorBody = await response.json().catch(() => ({}));
-        console.log('response --', response);
+        console.log('response --', response.status, errorBody);
         throw new Error(`API Error: ${response.status}: ${errorBody.error || response.statusText} `);
     }
 
